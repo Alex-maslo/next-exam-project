@@ -1,31 +1,25 @@
 import React from "react";
+import { getDataAuthUser } from "@/api-service/dataAuthUser";
+import { IUser } from "@/models/IUser";
 
-const UserPage = () => {
-  fetch("https://dummyjson.com/auth/refresh", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      // refreshToken: '/* YOUR_REFRESH_TOKEN_HERE */', // Optional, if not provided, the server will use the cookie
-      expiresInMins: 30, // optional (FOR ACCESS TOKEN), defaults to 60
-    }),
-    credentials: "include", // Include cookies (e.g., accessToken) in the request
-  })
-    .then((res) => res.json())
-    .then(console.log);
+const UserPage = async () => {
+  const user: IUser = await getDataAuthUser();
 
-  /* providing access token in bearer */
-  fetch("https://dummyjson.com/auth/users/", {
-    method: "GET" /* or POST/PUT/PATCH/DELETE */,
-    headers: {
-      // Authorization: "Bearer /* YOUR_ACCESS_TOKEN_HERE */",
-      // "Content-Type": "application/json",
-    },
-    credentials: "include",
-  })
-    .then((res) => res.json())
-    .then(console.log);
-
-  return <div>single user</div>;
+  return (
+    <div className=" m-5 ">
+      <div className="card card-side bg-base-100 drop-shadow-xl border border-amber-700 ">
+        <figure>
+          <img src={user.image} alt="Movie" />
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title">
+            {user.firstName} {user.lastName}
+          </h2>
+          <p>Click the button to watch on Jetflix app.</p>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default UserPage;

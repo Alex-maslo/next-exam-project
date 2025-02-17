@@ -1,17 +1,13 @@
 import React from "react";
-import Link from "next/link";
+import { cookies } from "next/headers";
+import MenuAuthUser from "@/components/menu/MenuAuthUser";
+import MenuNoAuthUser from "@/components/menu/MenuNoAuthUser";
 
-const Menu = () => {
-  return (
-    <div className="navbar flex justify-around bg-neutral text-neutral-content">
-      <Link href={"/"} className="btn btn-ghost text-xl">
-        Дім
-      </Link>
-      <Link href={"/auth"} className="btn btn-ghost text-xl">
-        Аутентифікація
-      </Link>
-    </div>
-  );
+const Menu = async () => {
+  const cookieStore = await cookies();
+  const accessToken = cookieStore.get("accessToken");
+
+  return <>{accessToken ? <MenuAuthUser /> : <MenuNoAuthUser />}</>;
 };
 
 export default Menu;
