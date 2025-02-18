@@ -1,9 +1,16 @@
 import React from "react";
+import { Metadata } from "next";
 
-export default function UsersLayout({
-  children,
-}: Readonly<{
+export const metadata: Metadata = {
+  title: "UsersLayout",
+};
+
+type Props = {
   children: React.ReactNode;
-}>) {
+};
+
+const UsersLayout = ({ children }: Props) => {
   return <>{children}</>;
-}
+};
+
+export default UsersLayout;

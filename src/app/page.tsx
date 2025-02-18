@@ -1,12 +1,8 @@
 import React from "react";
-import HomePage from "@/pages/home-page/HomePage";
+import HomePage from "@/pages/HomePage";
 
-const MainPage = async () => {
-  return (
-    <div>
-      <HomePage />
-    </div>
-  );
+const MainPage = () => {
+  return <HomePage />;
 };
 
 export default MainPage;

@@ -1,15 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getDataAuthUser } from "@/api-service/dataAuthUser";
+// import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
-export async function middleware(request: NextRequest) {
-  if (request.cookies.has("accessToken")) {
-    const user = await getDataAuthUser();
-    return NextResponse.redirect(new URL(`/users/${user.id}`, request.url));
-  }
+export const middleware = async (request: NextRequest) => {
+  const cookie: boolean = request.cookies.has("accessToken");
 
-  return NextResponse.next();
-}
-
-export const config = {
-  matcher: "/",
+  console.log(`--mid working`);
 };
