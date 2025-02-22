@@ -1,6 +1,6 @@
 import React from "react";
 import Form from "next/form";
-import { loginUserAndGetTokens } from "@/server-actions/getAccessToken";
+import { loginUserAndGetTokens } from "@/server-actions/loginUserAndGetTokens";
 
 const LoginForm = () => {
   return (
