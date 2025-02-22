@@ -10,7 +10,7 @@ export const loginUserAndGetTokens = async (formData: FormData) => {
     body: JSON.stringify({
       username: formData.get("username"),
       password: formData.get("password"),
-      expiresInMins: 30, // optional, defaults to 60
+      // expiresInMins: 60, // optional, defaults to 60
     }),
     credentials: "include", // Include cookies (e.g., accessToken) in the request
   });

@@ -1,7 +1,14 @@
-import React from "react";
+import React, { FC } from "react";
 
-const Page = () => {
-  return <div>single user page</div>;
+type UserProps = {
+  params: string;
 };
 
-export default Page;
+const UserPage: FC<UserProps> = async ({ params }: UserProps) => {
+  // const { id } = await params;
+  console.log(params);
+
+  return <div>ss</div>;
+};
+
+export default UserPage;
