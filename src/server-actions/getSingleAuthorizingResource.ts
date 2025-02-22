@@ -1,10 +1,13 @@
 import { cookies } from "next/headers";
-import { IUser } from "@/models/IUser";
+import { baseURL } from "@/server-actions/getAuthorizingResources";
 
-export const getAuthSingleUser = async (id: string): Promise<IUser> => {
+export const getSingleAuthorizingResource = async (
+  id: string,
+  resource: string,
+): Promise<any> => {
   const accessToken = (await cookies()).get("accessToken")?.value;
 
-  const res = await fetch(`https://dummyjson.com/auth/users/${id}`, {
+  const res = await fetch(`${baseURL}${resource}/${id}`, {
     method: "GET" /* or POST/PUT/PATCH/DELETE */,
     headers: {
       Authorization: `Bearer ${accessToken}`,

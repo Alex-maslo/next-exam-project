@@ -1,11 +1,6 @@
-import React from 'react';
+import React from "react";
+import Recipes from "@/components/Recipes";
 
-const Page = () => {
-    return (
-        <div>
+const RecipesPage = () => <Recipes />;
 
-        </div>
-    );
-};
-
-export default Page;
+export default RecipesPage;
