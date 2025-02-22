@@ -1,27 +1,15 @@
 import React from "react";
 import Link from "next/link";
-import { hasCookies } from "@/server-actions/hasCookies";
-import { cookies } from "next/headers";
 import { deleteAllCookies } from "@/server-actions/getAccessToken";
+import { isAuthenticated } from "@/server-actions/isAuthenticated";
 
 const Navbar = async () => {
-  const accessToken = await hasCookies();
-
-  let userLogo = "";
-
-  if (accessToken) {
-    const cookieStore = (await cookies()).get("userData")?.value as string;
-    userLogo = JSON.parse(cookieStore).image;
-  }
+  const accessToken = await isAuthenticated();
 
   return (
     <div className="navbar bg-neutral text-neutral-content flex flex-col sm:flex-row  justify-around">
       {accessToken ? (
         <>
-          <div className="w-10 rounded-full">
-            <img alt="user photo" src={userLogo} />
-          </div>
-
           <div className="form-control">
             <input
               type="text"

@@ -46,4 +46,5 @@ export const getCurrentAuthUser = async () => {
     credentials: "include", // Include cookies (e.g., accessToken) in the request
   });
   const userData = await res.json();
+  console.log(userData);
 };

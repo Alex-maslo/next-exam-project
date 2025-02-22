@@ -1,9 +1,6 @@
 import React from "react";
-import { hasCookies } from "@/server-actions/hasCookies";
 
-const HomePage = async () => {
-  const accessToken = await hasCookies();
-
+const HomePage = async ({ accessToken }: { accessToken: boolean }) => {
   return (
     <>
       {accessToken ? (
@@ -13,11 +10,10 @@ const HomePage = async () => {
           <div className="hero bg-base-100 ">
             <div className="hero-content text-center">
               <div className="max-w-md">
-                <h1 className="text-5xl font-bold">Hello there</h1>
+                <h1 className="text-5xl font-bold">Hello</h1>
                 <p className="py-6">
-                  Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                  assumenda excepturi exercitationem quasi. In deleniti eaque
-                  aut repudiandae et a id nisi.
+                  To gain access, you are required to log in first and provide
+                  the necessary credentials to authenticate your identity.
                 </p>
               </div>
             </div>
