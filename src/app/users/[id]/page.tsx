@@ -1,14 +1,15 @@
-import React, { FC } from "react";
+import React from "react";
+import { getAuthSingleUser } from "@/server-actions/getAuthSingleUser";
+import { IUser } from "@/models/IUser";
+import UserDetails from "@/components/UserDetails";
 
-type UserProps = {
-  params: string;
-};
+type Params = Promise<{ id: string }>;
 
-const UserPage: FC<UserProps> = async ({ params }: UserProps) => {
-  // const { id } = await params;
-  console.log(params);
+const UserPage = async ({ params }: { params: Params }) => {
+  const { id } = await params;
+  const user: IUser = await getAuthSingleUser(id);
 
-  return <div>ss</div>;
+  return <UserDetails user={user} />;
 };
 
 export default UserPage;
