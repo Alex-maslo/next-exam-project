@@ -7,7 +7,9 @@ import { IRecipe } from "@/models/IRecipe";
 
 const Recipes = async () => {
   const data: IData = await getAuthorizingResources("recipes");
-  const recipes: IRecipe[] | undefined = data.recipes;
+  const recipes: IRecipe[] | undefined = data.recipes?.sort(
+    (a, b) => a.userId - b.userId,
+  );
 
   if (!recipes) {
     return <div>No recipes found</div>;

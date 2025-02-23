@@ -13,11 +13,11 @@ const User = ({ user }: { user: IUser }) => {
           />
           <div className="min-w-0 flex-auto">
             <p className="text-xl/8 font-semibold text-gray-900">
-              {user.firstName} {user.lastName}
+              {user.id} - {user.firstName} {user.lastName}
             </p>
             <p className="mt-1 truncate text-base text-gray-500">
               {user.email}
-            </p>{" "}
+            </p>
             <p className="mt-1 truncate text-base text-gray-500">
               {user.phone}
             </p>
