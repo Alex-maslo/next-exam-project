@@ -1,10 +1,10 @@
 import { cookies } from "next/headers";
 import { baseURL } from "@/server-actions/getAuthorizingResources";
 
-export const getSingleAuthorizingResource = async (
+export const getSingleAuthorizingResource = async <T>(
   id: string,
   resource: string,
-): Promise<any> => {
+): Promise<T> => {
   const accessToken = (await cookies()).get("accessToken")?.value;
 
   const res = await fetch(`${baseURL}${resource}/${id}`, {

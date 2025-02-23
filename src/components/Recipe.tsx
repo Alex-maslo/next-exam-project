@@ -10,8 +10,8 @@ const Recipe = ({ recipe }: { recipe: IRecipe }) => {
             {recipe.name}, # {recipe.userId}
           </p>
           <ul className="list-disc p-6">
-            {recipe.tags.map((tag) => (
-              <li>{tag}</li>
+            {recipe.tags.map((tag, index) => (
+              <li key={index}>{tag}</li>
             ))}
           </ul>
         </div>

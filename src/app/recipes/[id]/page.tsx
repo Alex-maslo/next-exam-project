@@ -7,7 +7,10 @@ type Params = Promise<{ id: string }>;
 
 const RecipePage = async ({ params }: { params: Params }) => {
   const { id } = await params;
-  const recipe: IRecipe = await getSingleAuthorizingResource(id, "recipes");
+  const recipe: IRecipe = (await getSingleAuthorizingResource(
+    id,
+    "recipes",
+  )) as IRecipe;
   return <RecipesDetails recipe={recipe} />;
 };
 
