@@ -3,18 +3,19 @@ import { IUser } from "@/models/IUser";
 import { IData } from "@/models/IData";
 import { getAuthorizingResources } from "@/server-actions/getAuthorizingResources";
 import { IRecipe } from "@/models/IRecipe";
-import Recipe from "@/components/Recipe";
+import Recipe from "@/components/recipe/Recipe";
 import Link from "next/link";
 
-const UserDetails = async ({ user }: { user: IUser }) => {
+const UserDetail = async ({ user }: { user: IUser }) => {
   const data: IData = await getAuthorizingResources("recipes");
+
   const recipes: IRecipe[] | undefined = data.recipes?.filter(
     (recipe) => recipe.userId === user.id,
   );
 
   return (
     <>
-      <div className="flex justify-center p-6">
+      <div className="grid grid-rows-2 justify-items-center gap-3 p-6">
         <div className="relative sm:flex  w-full max-w-[48rem] flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
           <div className="relative m-0 w-2/5 shrink-0 overflow-hidden rounded-xl rounded-r-none bg-white bg-clip-border text-gray-700">
             <img
@@ -24,7 +25,7 @@ const UserDetails = async ({ user }: { user: IUser }) => {
             />
           </div>
           <div className="p-6">
-            <h6 className="mb-4 text-2xl font-semibold uppercasetracking-normal text-pink-500 ">
+            <h6 className="mb-4 text-2xl font-semibold uppercasetracking-normal text-pink-500">
               {user.firstName} {user.lastName}
             </h6>
 
@@ -56,19 +57,27 @@ const UserDetails = async ({ user }: { user: IUser }) => {
             </div>
           </div>
         </div>
-      </div>
 
-      {recipes ? (
-        recipes.map((recipe) => (
-          <Link key={recipe.id} href={`/recipes/${recipe.id}`}>
-            <Recipe recipe={recipe} />
-          </Link>
-        ))
-      ) : (
-        <div>No recipes found</div>
-      )}
+        <div className="relative w-full max-w-[48rem] ">
+          {recipes?.length !== 0 && recipes !== undefined ? (
+            recipes.map((recipe) => (
+              <Link key={recipe.id} href={`/recipes/${recipe.id}`}>
+                <Recipe recipe={recipe} />
+              </Link>
+            ))
+          ) : (
+            <>
+              <div>
+                <div className="alert alert-error text-center">
+                  <h2>No recipes found</h2>
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
     </>
   );
 };
 
-export default UserDetails;
+export default UserDetail;

@@ -1,33 +1,17 @@
 import React from "react";
 import Link from "next/link";
-import { isAuthenticated } from "@/server-actions/isAuthenticated";
 import { exitUser } from "@/server-actions/exitUser";
-import { cookies } from "next/headers";
+import { isAuthenticated } from "@/server-actions/isAuthenticated";
+import { getUserFromCookie } from "@/server-actions/getUserFromCookie";
 import { IUserWithTokens } from "@/models/IUserWithTokens";
 
 const Navbar = async () => {
-  const accessToken = await isAuthenticated();
-
-  let user: IUserWithTokens = {
-    id: 0,
-    username: "",
-    email: "",
-    firstName: "",
-    lastName: "",
-    gender: "",
-    image: "",
-    accessToken: "",
-    refreshToken: "",
-  };
-
-  if (accessToken) {
-    const userData = (await cookies())?.get("userData")?.value;
-    user = userData ? JSON.parse(userData) : {};
-  }
+  const isAuth: boolean = await isAuthenticated();
+  const user: IUserWithTokens = await getUserFromCookie();
 
   return (
     <div className="navbar bg-neutral text-neutral-content flex flex-col sm:flex-row  justify-around">
-      {accessToken ? (
+      {isAuth ? (
         <>
           <div className="form-control">
             <input

@@ -2,6 +2,7 @@
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { IUserWithTokens } from "@/models/IUserWithTokens";
 
 export const loginUserAndGetTokens = async (formData: FormData) => {
   const res = await fetch("https://dummyjson.com/auth/login", {
@@ -19,10 +20,10 @@ export const loginUserAndGetTokens = async (formData: FormData) => {
     redirect("/auth-error");
   }
 
-  const userData = await res.json();
+  const user: IUserWithTokens = await res.json();
+
   const cookieStore = await cookies();
-  cookieStore.set("accessToken", userData.accessToken);
-  cookieStore.set("refreshToken", userData.refreshToken);
-  cookieStore.set("userData", JSON.stringify(userData));
+  cookieStore.set("user", JSON.stringify(user));
+
   redirect("/");
 };

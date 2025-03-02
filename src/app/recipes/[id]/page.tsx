@@ -1,7 +1,7 @@
 import React from "react";
 import { IRecipe } from "@/models/IRecipe";
 import { getSingleAuthorizingResource } from "@/server-actions/getSingleAuthorizingResource";
-import RecipesDetails from "@/components/RecipesDetails";
+import RecipesDetail from "@/components/recipe-detail/RecipesDetail";
 
 type Params = Promise<{ id: string }>;
 
@@ -11,7 +11,7 @@ const RecipePage = async ({ params }: { params: Params }) => {
     id,
     "recipes",
   )) as IRecipe;
-  return <RecipesDetails recipe={recipe} />;
+  return <RecipesDetail recipe={recipe} />;
 };
 
 export default RecipePage;
