@@ -3,20 +3,16 @@ import { IRecipe } from "@/models/IRecipe";
 
 const Recipe = ({ recipe }: { recipe: IRecipe }) => {
   return (
-    <div className="h-full">
-      <div className="flex justify-between border border-gray-200 p-2">
-        <div className="flex min-w-0 gap-x-4">
-          <div className="min-w-0 flex-auto">
-            <p className="text-xl/8 font-semibold text-gray-900">
-              {recipe.name}
-            </p>
-            <ul className="list-disc p-6">
-              {recipe.tags.map((tag, index) => (
-                <li key={index}>{tag}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
+    <div className=" flex flex-col justify-between h-[24vh] border border-gray-300 rounded-lg p-6 shadow-md ">
+      <h2 className="text-xl font-semibold text-red-500">{recipe.name}</h2>
+      <div>
+        <ul className="flex flex-wrap gap-2">
+          {recipe.tags.map((tag, index) => (
+            <li className="text-blue-600 font-semibold" key={index}>
+              {tag}{" "}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

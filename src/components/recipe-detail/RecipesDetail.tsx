@@ -28,9 +28,19 @@ const RecipesDetail = async ({ recipe }: { recipe: IRecipe }) => {
               <strong>Cuisine:</strong> {recipe.cuisine}
             </p>
           </div>
-          <div className="flex gap-4">
-            <RecipeTags array={recipe.ingredients} />
-            <RecipeTags array={recipe.instructions} />
+          <div className="flex gap-4 p-3">
+            <div>
+              <h2 className="text-2xl font-semibold text-red-600">
+                Ingredients
+              </h2>
+              <RecipeTags array={recipe.ingredients} />
+            </div>
+            <div>
+              <h2 className="text-2xl font-semibold text-red-600">
+                Instructions
+              </h2>
+              <RecipeTags array={recipe.instructions} />
+            </div>
           </div>
 
           <Link href={`/users/${recipe.userId}`}>

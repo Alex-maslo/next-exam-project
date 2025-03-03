@@ -5,6 +5,7 @@ import Recipe from "@/components/recipe/Recipe";
 import { IData } from "@/models/IData";
 import { IRecipe } from "@/models/IRecipe";
 import Pagination from "@/components/pagination/Pagination";
+import Test from "@/components/recipe/Test";
 
 const Recipes = async ({ page }: { page: number }) => {
   const data: IData = await getAuthorizingResources("recipes", page, 12);
