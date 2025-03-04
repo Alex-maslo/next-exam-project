@@ -1,12 +1,14 @@
 import React from "react";
-import { getAuthorizingResources } from "@/server-actions/getAuthorizingResources";
-import Recipe from "@/components/recipe/Recipe";
+import { getRecipesByTag } from "@/server-actions/getRecipesByTag";
 import { IData } from "@/models/IData";
 import { IRecipe } from "@/models/IRecipe";
-import Pagination from "@/components/pagination/Pagination";
+import Recipe from "@/components/recipe/Recipe";
 
-const Recipes = async ({ page }: { page: number }) => {
-  const data: IData = await getAuthorizingResources("recipes", page, 12);
+type Params = Promise<{ tag: string }>;
+
+const Page = async (props: { params: Params }) => {
+  const { tag } = await props.params;
+  const data: IData = await getRecipesByTag(tag, "recipes");
   const recipes: IRecipe[] | undefined = data.recipes;
 
   if (!recipes) return <div>No recipes found</div>;
@@ -20,9 +22,8 @@ const Recipes = async ({ page }: { page: number }) => {
           ))}
         </div>
       </div>
-      <Pagination page={page} />
     </>
   );
 };
 
-export default Recipes;
+export default Page;

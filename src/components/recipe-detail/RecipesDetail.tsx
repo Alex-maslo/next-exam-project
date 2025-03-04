@@ -4,6 +4,7 @@ import Link from "next/link";
 import RecipeTags from "@/components/recipe-detail/RecipeTags";
 import { getSingleAuthorizingResource } from "@/server-actions/getSingleAuthorizingResource";
 import { IUser } from "@/models/IUser";
+import Image from "next/image";
 
 const RecipesDetail = async ({ recipe }: { recipe: IRecipe }) => {
   const user: IUser = await getSingleAuthorizingResource(
@@ -14,9 +15,14 @@ const RecipesDetail = async ({ recipe }: { recipe: IRecipe }) => {
   return (
     <div className="flex justify-center p-6">
       <div className="grid grid-cols-[1fr_2fr] gap-4 border border-gray-400">
-        <figure>
-          <img src={recipe.image} alt="Album" />
-        </figure>
+        <div className="relative">
+          <Image
+            src={recipe.image}
+            alt="Album"
+            className="object-cover"
+            fill={true}
+          />
+        </div>
 
         <div className="p-3 second-cell">
           <h2 className="text-3xl font-bold mb-5">{recipe.name}</h2>

@@ -4,6 +4,7 @@ import { exitUser } from "@/server-actions/exitUser";
 import { isAuthenticated } from "@/server-actions/isAuthenticated";
 import { getUserFromCookie } from "@/server-actions/getUserFromCookie";
 import { IUserWithTokens } from "@/models/IUserWithTokens";
+import Image from "next/image";
 
 const Navbar = async () => {
   const isAuth: boolean = await isAuthenticated();
@@ -28,8 +29,8 @@ const Navbar = async () => {
             Users
           </Link>
 
-          <div className="avatar h-10">
-            <img className="object-contain" src={user.image} alt="User Logo" />
+          <div className="avatar relative h-10 w-10">
+            <Image src={user.image} alt="User Logo" fill={true} />
           </div>
           <div className="text-xl font-semibold">
             <h2>

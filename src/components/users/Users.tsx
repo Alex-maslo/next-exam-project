@@ -16,12 +16,14 @@ const Users = async ({ page }: { page: number }) => {
 
   return (
     <>
-      <div className="grid sm:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-        {users.map((user) => (
-          <Link key={user.id} href={`/users/${user.id}`}>
-            <User user={user} />
-          </Link>
-        ))}
+      <div className="container mx-auto p-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+          {users.map((user) => (
+            <Link key={user.id} href={`/users/${user.id}`}>
+              <User user={user} />
+            </Link>
+          ))}
+        </div>
       </div>
 
       <Pagination page={page} />
